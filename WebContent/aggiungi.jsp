@@ -2,7 +2,9 @@
 <jsp:useBean id="carrello" scope="session" class="com.ats.beans.Carrello"/>
 <%
 	String id = request.getParameter("id");
-	if(id != null){
+	
+	if(id != null)
+	{
 		String titolo = request.getParameter("titolo");
 		String autore = request.getParameter("autore");
 		double prezzo = Double.parseDouble(request.getParameter("prezzo"));

@@ -22,19 +22,20 @@
 <body>
 <jsp:include page="header.jsp"/>
 <h3>Lista articoli carrello</h3>
-Quantit&agrave;<%=carrello.numeroArticoli() %>
+Quantit&agrave; oggetti presenti nel carrello :: <%=carrello.numeroArticoli() %>
 <table style="width:100%">
 	<tr>
-		<td style="width=20%">Titolo</td>
-		<td style="width=20%">Autore</td>
-		<td style="width=20%">Totale Parziale</td>
-		<td style="width=20%">Quantit&agrave;</td>
-		<td style="width=20%">Elimina articolo</td>
+		<td style="width=20%"><b>Titolo</b></td>
+		<td style="width=20%"><b>Autore</b></td>
+		<td style="width=20%"><b>Totale Parziale</b></td>
+		<td style="width=20%"><b>Quantit&agrave;</b></td>
+		<td style="width=20%"><b>Elimina articolo</b></td>
 	</tr>
 <%
 	Enumeration<String[]> enumerazione = carrello.enumerazione();
 	String dati[];
-	while(enumerazione.hasMoreElements()){
+	while(enumerazione.hasMoreElements())
+	{
 		dati = enumerazione.nextElement();
 %>
 	<tr>

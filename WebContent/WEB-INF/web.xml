@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>Libreria</display-name>
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
@@ -26,5 +26,14 @@
   <servlet-mapping>
     <servlet-name>aggiungi</servlet-name>
     <url-pattern>/aggiungi</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>RimuoviServlet</display-name>
+    <servlet-name>RimuoviServlet</servlet-name>
+    <servlet-class>com.ats.servlet.RimuoviServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RimuoviServlet</servlet-name>
+    <url-pattern>/RimuoviServlet</url-pattern>
   </servlet-mapping>
 </web-app>

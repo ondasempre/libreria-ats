@@ -9,7 +9,9 @@ password varchar2(10) not null,
 email varchar2(50) not null,
 constraint p_user primary key(username));
 
+-- seq per ordine ed articolo
 create sequence ordine_seq;
+create sequence articolo_seq start with 1000;
 
 create table ordine(
 id_ordine int,
@@ -17,8 +19,8 @@ totale number(5,2),
 data date not null,
 username varchar2(10),
 constraint p_idordine primary key(id_ordine),
-constraint f_username foreign key(username)
-references utente(username));
+constraint f_username foreign key(username) references utente(username));
+
 
 create table articolo(
 id_articolo int,

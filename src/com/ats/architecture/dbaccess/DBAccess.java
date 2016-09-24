@@ -7,27 +7,34 @@ import com.ats.architecture.dao.DAOconstants;
 /*
  * Classe che si occupa di aprire e chiudere la connessione con il DB
  */
-public class DBAccess implements DAOconstants{
+public class DBAccess implements DAOconstants
+{
 	private static Connection conn;
 	
-	//statico perchè deve essere richiamato direttamente sulla classe e non
+	//statico perchï¿½ deve essere richiamato direttamente sulla classe e non
 	//su una sua istanza
-	public static synchronized Connection getConnection() throws ClassNotFoundException, DAOException{
-		try{
+	public static synchronized Connection getConnection() throws ClassNotFoundException, DAOException
+	{
+		try
+		{
 			Class.forName(JDBC_DRIVER);
 			conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
-		}catch(SQLException sql){
+		} catch(SQLException sql) {
 			throw new DAOException(sql);
 		}
 		return conn;
 	}
 
-	public static void closeConnection(Connection conn) throws DAOException{
-		try{
-			if(conn != null){
+	public static void closeConnection(Connection conn) throws DAOException
+	{
+		try
+		{
+			if(conn != null)
+			{
 				conn.close();
 			}
-		}catch(SQLException sql){
+			
+		} catch(SQLException sql) {
 			throw new DAOException(sql);
 		}
 	}

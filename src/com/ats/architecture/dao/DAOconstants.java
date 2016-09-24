@@ -4,13 +4,15 @@ public interface DAOconstants
 {
 
 	String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
-	String JDBC_URL = "jdbc:oracle:thin:@10.0.1.18:1521:orcl";
+	//String JDBC_URL = "jdbc:oracle:thin:@10.0.1.18:1521:orcl";
+	String JDBC_URL = "jdbc:oracle:thin:@10.0.1.72:1521:orcl";
 	
-	String USERNAME = "flavio";
-	String PASSWORD = "flavio";
+	String USERNAME = "ondasempre";
+	String PASSWORD = "ondasempre";
 	
 	//recupero il prossimo valore dalla sequenza per usare la sequenza per incrementare l'id_ordine
 	String SEQNEXTVAL = "SELECT ordine_seq.nextval FROM dual";
+	String ARTSEQNEXTVAL = "SELECT articolo_seq.nextval FROM dual";
 	
 	//si mettono sempre delle query per recuperare il contenuto delle tabelle
 	// e per le viste
