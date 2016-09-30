@@ -1,19 +1,32 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@page errorPage="error.jsp" %>
 
-
-<%
-		session.invalidate(); //elimina tutti i dati della sessione
-%>
-
+    <%@page errorPage="error.jsp" %>
+    <%
+    	
+    String username=(String)session.getAttribute("username");
+    if(username==null)
+    {
+  
+    %>
+    <%@include file="accessonegato.html" %>
+    <%
+    }
+    else
+    {
+    session.invalidate();
+    %>
+    <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Logout</title>
+<title>logout</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
-<h3>Hai appena effettuato il logout</h3>
-<p>Se vuoi rientrare effettua il login</p>
+	<jsp:include page="header.jsp"/>
+	<h3>hai appena efettuato il logout</h3>
+	<p>se voui rientrare effettua il login</p>
 </body>
 </html>
+<%
+}
+%>
