@@ -3,6 +3,7 @@ package com.ats.businesscomponent;
 import java.sql.*;
 
 import com.ats.architecture.dao.DAOException;
+import com.ats.architecture.dao.OrdineArticoloDAO;
 import com.ats.architecture.dao.OrdineDAO;
 import com.ats.architecture.dbaccess.DBAccess;
 import com.ats.beans.Ordine;
@@ -31,19 +32,14 @@ public class OrdineBC {
 			throw new DAOException(sql);
 		}
 	}
-	
-	public void delete(Ordine ordine) throws DAOException, ClassNotFoundException
-	{
+	public void elimina(Ordine ordine, int id_ordine) throws DAOException, ClassNotFoundException{
 		try{
-			// Recuperiamo l'id dell'Ordine
-			long id = ordine.getId_ordine();
-			// Richiamo il metodo delete relativo all'ordine
-			new OrdineDAO().delete(conn, id, ordine);
-			
+			OrdineArticoloDAO oaDAO = new OrdineArticoloDAO();
+			oaDAO.elimina(conn, ordine);
+			OrdineDAO ordineDAO = new OrdineDAO();
+			ordineDAO.elimina(conn, ordine, id_ordine);
 		}catch(SQLException sql){
 			throw new DAOException(sql);
 		}
 	}
-	
-	
 }

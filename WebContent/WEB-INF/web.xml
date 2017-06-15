@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>Libreria</display-name>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>libreria</display-name>
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
@@ -28,12 +28,27 @@
     <url-pattern>/aggiungi</url-pattern>
   </servlet-mapping>
   <servlet>
-    <display-name>RimuoviServlet</display-name>
-    <servlet-name>RimuoviServlet</servlet-name>
+    <servlet-name>rimuovi</servlet-name>
     <servlet-class>com.ats.servlet.RimuoviServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>RimuoviServlet</servlet-name>
-    <url-pattern>/RimuoviServlet</url-pattern>
+    <servlet-name>rimuovi</servlet-name>
+    <url-pattern>/rimuovi</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>salvalibro</servlet-name>
+    <servlet-class>com.ats.servlet.SalvalibroServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>salvalibro</servlet-name>
+    <url-pattern>/salvalibro</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>modificalibro</servlet-name>
+    <servlet-class>com.ats.servlet.ModificaLibri</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>modificalibro</servlet-name>
+    <url-pattern>/modificalibro</url-pattern>
   </servlet-mapping>
 </web-app>

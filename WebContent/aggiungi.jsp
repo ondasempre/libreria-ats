@@ -1,16 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@page errorPage="error.jsp" %>
-<jsp:useBean id="carrello" scope="session" class="com.ats.beans.Carrello"/>
-<%
-	String id = request.getParameter("id");
+
+<%@page import="com.ats.beans.Articolo" %>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Inserisci</title>
+<script type="text/javascript" src="js/convalida.js">
+</script>
+</head>
+<body>
+<h3>Inserire i dati libro</h3>
+
+<form action="/libreriaprova/salvalibro" method="post">
+
+<table>
 	
-	if(id != null)
-	{
-		String titolo = request.getParameter("titolo");
-		String autore = request.getParameter("autore");
-		double prezzo = Double.parseDouble(request.getParameter("prezzo"));
-		carrello.aggiungiLibro(id, titolo, autore, prezzo);
-	}
-	response.sendRedirect("acquisti.jsp");
-	//con response torno alla pagina acquisti e basta
-	//se mettevo forward rimandavo alla pagina acquisti con i parametri
-%>
+	<tr> 
+		<td style="width:150px;">Titolo</td>
+		<td style="width:300px;"><input type="text" name="titolo" id="titolo"></td>
+	</tr>
+	<tr> 
+		<td>Autore</td>
+		<td><input type="text" name="autore" id="autore"></td>
+	</tr>
+	<tr> 
+		<td>Prezzo</td>
+		<td><input type="text" name="prezzo" id="prezzo"></td>
+	</tr>
+	<tr> 
+		<td ><input type="submit" value="inserisci"></td>
+	</tr>
+</table>
+	<a href="visualizzacatalogo.jsp">torna al catalogo</a>
+</form>
+</body>
+</html>

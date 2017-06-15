@@ -1,11 +1,9 @@
 package com.ats.architecture.dao;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 
 import javax.sql.rowset.CachedRowSet;
 
-import com.ats.beans.Articolo;
 import com.ats.beans.Ordine;
 import com.ats.beans.OrdineArticolo;
 import com.sun.rowset.CachedRowSetImpl;
@@ -15,15 +13,13 @@ import com.sun.rowset.CachedRowSetImpl;
  */
 public class OrdineArticoloDAO implements DAOconstants{
 	private CachedRowSet rowSet;	//mantiene la sincronizzazione con il DB
-									//con connection hai piï¿½ controllo sulla conn
+									//con connection hai più controllo sulla conn
 	public OrdineArticoloDAO() throws SQLException{
 		rowSet = new CachedRowSetImpl();
 	}
 	
-	public void create(Connection conn, OrdineArticolo oa) throws DAOException
-	{
-		try
-		{
+	public void create(Connection conn, OrdineArticolo oa) throws DAOException{
+		try{
 			rowSet.setCommand(SELECT_ORDINEARTICOLO);
 			rowSet.execute(conn);	//quando apriamo la connessione con il DBAccess
 									//dobbiamo passare la connessione come parametro
@@ -42,40 +38,14 @@ public class OrdineArticoloDAO implements DAOconstants{
 			throw new DAOException(sql);
 		}
 	}
-	
-	public void delete(Connection conn, OrdineArticolo oa) throws DAOException 
-	{
-
-		try
-		{	
-			// Cancella la relationship Ordine_Articolo
-			rowSet.setCommand(DELETE_ORDINEARTICOLO);
-	
-			rowSet.setLong(1, oa.getId_ordine());
-			rowSet.setLong(2, oa.getId_articolo());
+	public void elimina(Connection conn, Ordine ordine) throws DAOException{
+		try{
 			
-			rowSet.execute(conn);	
-			
-		} catch(SQLException sql) {
+			rowSet.setCommand(DELETE_ORDINE_ARTICOLO);
+	        rowSet.setLong(1, ordine.getId_ordine());  
+	        rowSet.execute(conn);
+		}catch(SQLException sql){
 			throw new DAOException(sql);
 		}
 	}
-
-	public void delete(Connection conn, long id_ordine, long id_articolo, OrdineArticolo oa) throws DAOException {
-		try
-		{	
-			// Cancella la relationship Ordine_Articolo
-			rowSet.setCommand(DELETE_ORDINEARTICOLO);
-	
-			rowSet.setLong(1, oa.getId_ordine());
-			rowSet.setLong(2, oa.getId_articolo());
-			
-			rowSet.execute(conn);	
-			
-		} catch(SQLException sql) {
-			throw new DAOException(sql);
-		}
-		
-	}
-	
 }

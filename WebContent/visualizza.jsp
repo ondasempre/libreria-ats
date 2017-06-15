@@ -22,20 +22,19 @@
 <body>
 <jsp:include page="header.jsp"/>
 <h3>Lista articoli carrello</h3>
-Quantit&agrave; oggetti presenti nel carrello :: <%=carrello.numeroArticoli() %>
+Quantit&agrave;<%=carrello.numeroArticoli() %>
 <table style="width:100%">
 	<tr>
-		<td style="width=20%"><b>Titolo</b></td>
-		<td style="width=20%"><b>Autore</b></td>
-		<td style="width=20%"><b>Totale Parziale</b></td>
-		<td style="width=20%"><b>Quantit&agrave;</b></td>
-		<td style="width=20%"><b>Elimina articolo</b></td>
+		<td style="width=20%">Titolo</td>
+		<td style="width=20%">Autore</td>
+		<td style="width=20%">Totale Parziale</td>
+		<td style="width=20%">Quantit&agrave;</td>
+		<td style="width=20%">Elimina articolo</td>
 	</tr>
 <%
 	Enumeration<String[]> enumerazione = carrello.enumerazione();
 	String dati[];
-	while(enumerazione.hasMoreElements())
-	{
+	while(enumerazione.hasMoreElements()){
 		dati = enumerazione.nextElement();
 %>
 	<tr>
@@ -43,7 +42,7 @@ Quantit&agrave; oggetti presenti nel carrello :: <%=carrello.numeroArticoli() %>
 		<td><%=dati[1] %></td>
 		<td><%=String.format("%.2f", carrello.totaleParziale(dati[4])) %></td>
 		<td><%=dati[3] %></td>
-		<td><form action="rimuovi.jsp">
+		<td><form action="/libreriaprova/rimuovi"method="post">
 			<input type="submit" value="togli dal carrello">
 			<input type="hidden" name="id" value="<%= dati[4] %>">
 		</form></td>

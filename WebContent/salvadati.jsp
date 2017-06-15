@@ -32,8 +32,8 @@
 	if(username == null) username = ""; //sql injection
 	session.setAttribute("username", username);
 %>
-<h3>Registrazione completata con successo!</h3>
-<p><a href="acquisti.jsp">Procedi agli acquisti...</a></p>
+<h3>Registrazione completata con successo</h3>
+<p><a href="acquisti.jsp">Procedi agli acquisti</a></p>
 <%
 	
 %>

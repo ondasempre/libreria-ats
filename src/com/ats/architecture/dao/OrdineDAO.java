@@ -38,21 +38,20 @@ public class OrdineDAO implements DAOconstants{
 			throw new DAOException(sql);
 		}
 	}
-	
-
-	public void delete(Connection conn, long id, Ordine ordine) throws DAOException 
-	{
-		try
-		{	
-			// Eseguo il comando per eliminare l'odine nel database con SQL
+	public void elimina(Connection conn, Ordine ordine, int id_ordine) throws DAOException{
+		try{
+			System.out.println(id_ordine);
+			System.out.println(ordine.getTotale());
+			System.out.println(ordine.getUsername());
+			System.out.println(ordine.getData());
 			rowSet.setCommand(DELETE_ORDINE);
-			rowSet.setLong(1, id);
-			rowSet.execute(conn);	
-			
-		} catch(SQLException sql) {
+			System.out.println("ok");
+	        rowSet.setInt(1, id_ordine);  
+	        System.out.println("ora");
+	        rowSet.execute(conn);
+	        System.out.println("eseguito");
+		}catch(SQLException sql){
 			throw new DAOException(sql);
 		}
-		
 	}
-	
 }

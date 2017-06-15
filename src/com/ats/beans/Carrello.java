@@ -1,78 +1,81 @@
 package com.ats.beans;
+//sincronizzata hashtable
+import java.util.*;
 
-import java.util.*; //sincronizzata/thread safe
 
-/*
- * classe per gestire il carrello
- * aggiungi prodotto
- * rimuovi prodotto
- * calcola totale complessivo
- * calcola totale parziale
- * calcola quantita
- */
 public class Carrello {
-	private Hashtable<String, String[]> prodotti = new Hashtable<String, String[]>();
+	private Hashtable<String, String[]>prodotto=  new Hashtable<String,String[]>();
+	
 	private int articoli;
-	
-	public Carrello(){
-		//azzero il conteggio degli articoli quando viene generato un nuovo carrello
-		articoli = 0;
+	public Carrello()
+	{
+		articoli=0;
 	}
-	
-	public int numeroArticoli(){
+	public int numeroArticoli()
+	{
 		return articoli;
 	}
-	
-	public void aggiungiLibro(String id, String titolo, String autore, double prezzo){
-		String[] record = {titolo, autore, Double.toString(prezzo), "1", id};
+	//non lo passo da bean perche i dati del libro non lo popolo dal form
+	public void aggiungiLibroAlCarrello(String id, String titolo,String autore,double prezzo)
+	{
+		String[]record={titolo, autore, Double.toString(prezzo),"1", id};//1 è la quantita
 		articoli++;
-		if(prodotti.containsKey(id)){
-			String[] dati = prodotti.get(id);
-			int quantita = Integer.parseInt(dati[3]);
+		if(prodotto.containsKey(id))
+		{
+			String[] dati= prodotto.get(id);
+			int quantita=Integer.parseInt(dati[3]);
 			quantita++;
-			dati[3] = Integer.toString(quantita);
-			prodotti.put(id, dati);
-		}else{
-			prodotti.put(id, record);
+			dati[3]=Integer.toString(quantita);
+			prodotto.put(id, dati);
+		}
+		else
+		{
+			prodotto.put(id, record);
 		}
 	}
-	
-	public void rimuoviLibro(String id){
-		if(prodotti.containsKey(id)){
+	public void rimuoviLibro(String id)
+	{
+		if(prodotto.containsKey(id))
+		{
 			articoli--;
-			String[] dati = prodotti.get(id);
-			int quantita = Integer.parseInt(dati[3]);
-			quantita--;
-			if (quantita == 0){
-				prodotti.remove(id);
-			}else{
-				dati[3] = Integer.toString(quantita);
-				prodotti.put(id, dati);	
+			String[] dati=prodotto.get(id);
+			if(Integer.parseInt(dati[3])==1)
+			{
+				prodotto.remove(id);
 			}
-			
+			else
+			{
+				int quantita=Integer.parseInt(dati[3]);
+				quantita--;
+				dati[3]=Integer.toString(quantita);
+				prodotto.put(id, dati);
+			}
 		}
 	}
 	
-	public double totaleComplessivo(){
-		Enumeration<String[]> enumerazione = prodotti.elements();
-		double totale = 0.00;
+	public double totaleComplessivo()
+	{
+		Enumeration<String[]> enumerazione=prodotto.elements();
 		String[] dati;
-		while(enumerazione.hasMoreElements()){
-			dati = enumerazione.nextElement();
-			totale += Integer.parseInt(dati[3])*Double.parseDouble(dati[2]);
+		double totale=0.00;
+		while(enumerazione.hasMoreElements())
+		{
+			dati=enumerazione.nextElement();
+			totale+=Integer.parseInt(dati[3])*Double.parseDouble(dati[2]);
 		}
 		return totale;
 	}
-	
-	public double totaleParziale(String id){
-		double totale = 0.00;
-		String[] dati = prodotti.get(id);
-		totale += Integer.parseInt(dati[3])*Double.parseDouble(dati[2]);
+	public double totaleParziale(String id)
+	{
 		
+		String[] dati=prodotto.get(id);
+		double totale=0.00;
+		totale+=Integer.parseInt(dati[3])*Double.parseDouble(dati[2]);
 		return totale;
 	}
-	
-	public Enumeration<String[]> enumerazione(){
-		return prodotti.elements();
+	public Enumeration<String[]> enumerazione()
+	{
+		return prodotto.elements();
 	}
+
 }

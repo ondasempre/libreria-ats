@@ -1,18 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ page errorPage="error.jsp" %>
-<%@ page import="java.util.*" %>
-<jsp:useBean id="carrello" scope="session" class="com.ats.beans.Carrello"/>
-
-<!-- qui possono accedere solo gli utenti registrati che hanno fatto il log in -->
 <%
-	String username = (String)session.getAttribute("username");
-	if(username == null){
+	String username =(String)session.getAttribute("username");
+		if(username==null){
 %>
 <%@include file="accessonegato.html" %>
 <%
-	} else {
+		}
+		else{
 %>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@page errorPage="error.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,10 +17,14 @@
 <body>
 <jsp:include page="header.jsp"/>
 <h3>Dati ordine</h3>
-<p>Il tuo codice dell'ordine <%= session.getAttribute("idordine") %> </p>
+<p>Codice ordine:<%= session.getAttribute("idordine") %></p>
 <%
-	session.removeAttribute("carrello"); //svuolo il carrello
+	session.removeAttribute("carrello");
+%>
+<br>
+<a href="acquisti.jsp">Compra ancora</a>
+</body>
+</html>
+<%
 	}
 %>
-	</body>
-</html>
